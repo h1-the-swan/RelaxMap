@@ -56,12 +56,12 @@ int main(int argc, char *argv[]) {
 
 	string infile = string(argv[2]);
 	string networkFile = string(argv[2]);
-	string networkName(networkFile.begin() + networkFile.find_last_of("/"), networkFile.begin() + networkFile.find_last_of("."));
+	string networkName(networkFile.begin() + networkFile.find_last_of("/")+1, networkFile.begin() + networkFile.find_last_of("."));
 	string networkType(infile.begin() + infile.find_last_of("."), infile.end());
 
 	double threshold = atof(argv[5]);
 	double vThresh = atof(argv[6]);		// vertex-threshold: threshold for each vertex-movement.
-
+	cout << "network name:" << networkName << ", network type:" << networkType << endl;
 	cout << "Threshold = " << threshold << ", Vertex-Threshold = " << vThresh << endl;
 	vThresh *= -1;	// change the threshold value for negative.
 
@@ -242,6 +242,7 @@ int main(int argc, char *argv[]) {
 
 	oss.str("");
 	oss << outDir << "/" << networkName << ".clu";
+	cout << "writing to " << oss.str() << endl;
 	outFile.open(oss.str().c_str());
 	outFile << "*Vertices " << nNode << "\x0D\x0A";
 	for(int i=0;i<nNode;i++)

@@ -258,6 +258,8 @@ void Network::initiate(int numTh) {
 	gettimeofday(&startT, NULL);
 	calculateSteadyState(numTh);
 	gettimeofday(&endT, NULL);
+	cout << "Exiting for no reason!" << endl;
+	exit(0);
 	cout << "Time for calculating steady state of nodes (eigenvector): " << elapsedTimeInSec(startT, endT) << " (sec)" << endl;
 
 

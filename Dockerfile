@@ -1,8 +1,11 @@
-ARG ALPINE_VERSION=3.14
+ARG UBUNTU_VERSION=20.04
 
-FROM alpine:$ALPINE_VERSION AS builder
+FROM ubuntu:$UBUNTU_VERSION AS builder
 
-RUN apk add --no-cache build-base
+RUN apt-get update && apt-get install -y \
+    build-essential \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 COPY . /RelaxMap
 
@@ -12,12 +15,12 @@ RUN make distclean
 
 RUN make
 
-FROM alpine:${ALPINE_VERSION}
+FROM ubuntu:${UBUNTU_VERSION}
 
-RUN apk add --no-cache \
-        libgcc \
-        libstdc++ \
-        libgomp
+RUN apt-get update && apt-get install -y \
+        libgomp1 \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /RelaxMap
 

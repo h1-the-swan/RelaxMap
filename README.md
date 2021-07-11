@@ -1,23 +1,49 @@
+# RelaxMap
+
 Copyright (C) since 2013,  Seung-Hee Bae, Bill Howe, Database Group at the University of Washington
 
 RelaxMap is a parallel community detection algorithm to optimize flow-based information-theoretic objective function, called the map equation. 
 RelaxMap is under GNU General Public License, detailed information is in LICENSE.txt.
 
+- [RelaxMap](#relaxmap)
+	- [Getting Started](#getting-started)
+		- [Using Docker](#using-docker)
+	- [Compiling from source](#compiling-from-source)
+	- [Usage](#usage)
+	- [Reference](#reference)
+	- [Bug Report](#bug-report)
 
+## Getting Started
 
-1. How to compile
+### Using Docker
+
+Image available on [Docker Hub](https://hub.docker.com/r/h1theswan/relaxmap).
+
+- h1theswan/relaxmap
+
+To run RelaxMap on example data, run this command within this repository:
+
+```sh
+docker run --rm -v `pwd`:/data h1theswan/relaxmap 1 data/flow.net 8 1 1e-4 0.0 10 data prior
+```
+
+## Compiling from source
 
 RelaxMap is implemented in C++ and uses OpenMP for shared-memory parallelism,
 so your C++ compiler should contain OpenMP library.
 
 You can compile by simple make command:
 
-	> make
+```sh
+make
+```
 
 
-2. How to run RelaxMap
+## Usage
 
-	[Usage] >./ompRelaxmap <seed> <network data> <# threads> <# attempts> <threshold> <vThresh> <maxIter> <outDir> <prior/normal>
+```sh
+./ompRelaxmap <seed> <network data> <# threads> <# attempts> <threshold> <vThresh> <maxIter> <outDir> <prior/normal>
+```
 
 The required arguments are following:
 
@@ -43,7 +69,7 @@ The required arguments are following:
 	9) prior/normal flag: apply the prioritized search for efficient runs (prior) or not (normal).  (recommended prior)
 
 
-3. Reference
+## Reference
 
 If you would like to add a reference for this application in documents, please put the following bibliography information:
 
@@ -52,7 +78,7 @@ If you would like to add a reference for this application in documents, please p
 	In Proceedings of IEEE 13th International Conference on Data Mining Workshop (ICDMW), 2013
 
 
-4. Bug Report
+## Bug Report
 
 If you find a bug, please send a bug report to 
 	Seung-Hee Bae: shbae@cs.washington.edu
